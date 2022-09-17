@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>VIT Event Registration Form</title>
+    <style>
+        #fullname {
+            display: grid;
+            grid-template-columns: auto auto;
+        }
+
+        * {
+            margin: 10;
+            padding: 0;
+        }
+
+        body {
+            background: url("C:/Users/Jahnavi G/Downloads/bg.jpg");
+            background-size: 110%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        div.main {
+            width: 450px;
+            margin: 150px auto 0px auto;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            font-family: sans-serif;
+        }
+
+        div.register {
+            background-color: rgba(0, 0, 0, 0.8);
+            width: 300%;
+            font-size: 18px;
+            border-radius: 25px;
+            border: 1px solid #fff;
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+            color: #fff;
+        }
+
+        form#eventRegister {
+            margin: 100px;
+        }
+
+        label {
+            font-family: sans-serif;
+            font-size: 20px;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        input#name,
+        select#course,
+        #event {
+            width: 250px;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            outline: 0;
+            padding: 7px;
+            background-color: #fff;
+            border-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+            {
+            width: 230px;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            outline: 0;
+            padding: 7px;
+            background-color: #fff;
+            border-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        input#register,
+        #reset {
+            width: 200px;
+            padding: 7px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-family: sans-serif;
+            font-weight: 900;
+            border: 2px solid #fff;
+            border-radius: 3px;
+            background-color: #006400;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        label,
+        span,
+        h1 {
+            text-shadow: 1px px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        #over img {
+            
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+    </style>
+    <script>
+        function formValidations() {
+            let email = document.forms["eventRegister"]['email'].value;
+            let contact = document.forms["eventRegister"]['phone'].value;
+            let zipcode = document.forms["eventRegister"]['zipcode'].value;
+            let password = document.forms["eventRegister"]['password'].value;
+            let cpwd = document.forms["eventRegister"]['cpwd'].value;
+            if (email != "") {
+                let atpos = email.indexOf("@");
+                let domain = email.split("@")[1];
+                if (atpos < 1 || domain != "vitstudent.ac.in") {
+                    alert("Not a valid e-mail address");
+                    return false;
+                }
+            }
+            if (contact != "") {
+                var phoneno = /^\d{10}$/;
+                if (!contact.match(phoneno)) {
+                    alert("Not a valid Phone Number");
+                    return false;
+                }
+            }
+            if (zipcode != "") {
+                var zipregx = /^\d{5}$/;
+                if (!zipcode.match(zipregx)) {
+                    alert("Not a valid Zipcode");
+                    return false;
+                }
+            }
+            if (password != "") {
+                var pwdregx = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{10,100}$/;
+                if (!password.match(pwdregx)) {
+                    alert('Incorrect password. Enter a valid one containing atleast 10 characters of uppercase, lowercase, numeric, or special characters.');
+                    return false;
+                }
+            }
+            if (cpwd != "") {
+                if (password != cpwd) {
+                    alert("Passwords are not matching");
+                    return false;
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+  
+    <div class="main">
+        <div class="register">
+            <h1>EVENT REGISTRATION FORM</h1>
+            <form id="eventRegister" name="eventRegister" method="post" onsubmit="return formValidations()" action="C:/Users/Jahnavi G/Documents/success.html">
+                <div id="fullname">
+                    <div>
+                        <label>First Name : </label>
+                        <input type="text" id="name" name="firstname" placeholder="Enter your first name" required/>
+                    </div>
+                    <div>
+                        <label>Last Name : </label>
+                        <input type="text" id="name" name="lastname" placeholder="Enter your last name" required/>
+                    </div>
+                </div><br>
+                <label>Registration Number : </label>
+                <br>
+                <input type="regno" name="regno" id="name" placeholder="Enter registration number" required><br><br>
+                <label>Email Address : </label>
+                <br>
+                <input type="email" name="email" id="name" placeholder="Enter valid email address" required><br><br>
+                <label>Contact Number : </label>
+                <br>
+                <input type="phone" name="phone" id="name" placeholder="Enter Contact number" required><br><br>
+                <label>Course : </label>
+                <br>
+                <select name="course" id="course" required>
+                    <option value="">Please select course</option>
+                    <option value="mid">Mtech Integrated Data science</option>
+                    <option value="mis">Mtech Integrated Software Engineering</option>
+                    <option value="vitusa">Mtech Integrated Virtusa</option>
+                    <option value="btech">BTech Software Engineering</option>
+                    <option value="mca">Master of Computer Applications</option>
+                </select><br><br>
+                <label>Gender : </label>
+                <br> &nbsp;
+                <input type="radio" name="gender" id="male" required>&nbsp;
+                <span id="male">Male</span>&nbsp;
+                <input type="radio" name="gender" id="female" required>&nbsp;
+                <span id="female">Female</span>
+                <input type="radio" name="gender" id="others" required>&nbsp;
+                <span id="others">Others</span>
+                <br><br>
+                <label>Event : </label>
+                <br>
+                <select name="event" id="event" required>
+                    <option value="">Please select Event</option>
+                    <option value="sahiti">Sahiti</option>
+                    <option value="treck">Trecking</option>
+                    <option value="social">Social Events</option>
+                    <option value="dance">Dance</option>
+                    <option value="ecell">E-cell event</option>
+                </select><br><br>
+                <label>Address : </label>
+                <br>
+                <input type="text" name="address" id="name" placeholder="Enter your address" required><br><br>
+                <label>Zipcode : </label>
+                <br>
+                <input type="text" name="zipcode" id="name" placeholder="Enter valid zipcode" required><br><br>
+                <label>Password : </label>
+                <br>
+                <input type="password" name="password" id="name" placeholder="Enter Password" required><br><br>
+                <label>Confirm Password : </label>
+                <br>
+                <input type="password" name="cpwd" id="name" placeholder="Re-enter Password" required><br><br><br>
+                <div>
+                    <p><strong>NOTE : All the fields are required !!!</strong></p>
+                </div>
+                <center><input type="submit" value="Register Now" name="register" id="register">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" value="Reset" name="reset" id="reset"></center>
+
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
